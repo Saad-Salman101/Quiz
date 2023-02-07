@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import questionContext from "../context/notes/questioncontext"
+import questionContext from "../context/question/questioncontext"
 import Questionitem from './Questionitem';
 import AddQuestion from './AddQuestion';
 import { useHistory } from 'react-router-dom';
@@ -35,6 +35,7 @@ const Questions = () => {
 
     return (
         <>
+            <h1> Hello </h1>
             <AddQuestion />
             <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Launch demo modal

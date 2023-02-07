@@ -17,15 +17,27 @@ router.get('/fetchallquestions', fetchuser, async (req, res) => {
 })
 
 // ROUTE 5: Get All the teacher Question using: GET "/api/question/getteacheruser". Login required
-router.get('/fetchallteacherquestions', async (req, res) => {
+router.get('/fetchallteacherquestions/:id', async (req, res) => {
 try {
-    const questions = await Question.find( {usertype:"Teacher" });
+    const { id}= req.params
+    const questions = await Question.find( {user: id });
     res.json( questions)
 } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
 }
 })
+
+// ROUTE 6: Get All the teacher Question using: GET "/api/question/getteacheruser". Login required
+router.get('/fetchallteacheroption', async (req, res) => {
+    try {
+        const questions = await Question.find( {usertype:"Teacher" }).populate(this.name);
+        res.json( questions)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+    })
 
 // ROUTE 2: Add a new Question using: POST "/api/question/addquestion". Login required
 router.post('/addquestion', fetchuser, [
@@ -105,48 +117,4 @@ router.delete('/deletequestion/:id', fetchuser, async (req, res) => {
 
 
 
-
-
-// // ROUTE 2: Authenticate a User using: POST "/api/auth/login". No login required
-// router.get('/fetchallteacherquestions', [
-//     body('email', 'Enter a valid email').isEmail(),
-//     body('password', 'Password cannot be blank').exists(),
-//   ], async (req, res) => {
-//     let success = false;
-//     // If there are errors, return Bad request and the errors
-//     const errors = validationResult(req);
-//     if (!errors.isEmpty()) {
-//       return res.status(400).json({ errors: errors.array() });
-//     }
-  
-//     const { email, password } = req.body;
-//     try {
-//       let user = await User.findOne({ email });
-//       if (!user) {
-//         success = false
-//         return res.status(400).json({ error: "Please try to login with correct credentials" });
-//       }
-  
-//       const passwordCompare = await bcrypt.compare(password, user.password);
-//       if (!passwordCompare) {
-//         success = false
-//         return res.status(400).json({ success, error: "Please try to login with correct credentials" });
-//       }
-  
-//       const data = {
-//           user: {
-//           id: user.id
-//         }
-//       }
-//       const authtoken = jwt.sign(data, JWT_SECRET);
-//       success = true;
-//       res.json({ success, authtoken })
-  
-//     } catch (error) {
-//       console.error(error.message);
-//       res.status(500).send("Internal Server Error");
-//     }
-  
-  
-//   });
 module.exports = router

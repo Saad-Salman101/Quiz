@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import questionContext from "../context/notes/questioncontext"
+import questionContext from "../context/question/questioncontext"
 
 
 const Questionitem = (props) => {

@@ -14,10 +14,6 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    usertype:{
-        type:String,
-        required: true
-    },
     subject:{
         type:String,
 
@@ -26,6 +22,14 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    score:{
+        type: Number,
+        default: 0
+    },
+    test:{
+        type: Number,
+        default: 0
+    }
     
   });
   const User = mongoose.model('user', UserSchema);

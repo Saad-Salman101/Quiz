@@ -4,11 +4,15 @@ const { Schema } = mongoose;
 const QuestionSchema = new Schema({
     user:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'teacheruser'
     },
-    usertype:{
-        type:String,
-        ref:'usertype'
+    name:{
+        type:mongoose.Types.ObjectId,
+        ref:'teacheruser'
+    },
+    subject:{
+        type:mongoose.Types.ObjectId,
+        ref:'teacheruser'
     },
     currentquestion:{
         type: String,

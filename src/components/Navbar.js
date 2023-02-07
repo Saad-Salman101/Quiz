@@ -7,7 +7,7 @@ const Navbar = () => {
     let history= useHistory();
     const handleLogout =() =>{
         localStorage.removeItem('token')
-        history.push('/login')
+        history.push('/home')
     }
 
     let location = useLocation();

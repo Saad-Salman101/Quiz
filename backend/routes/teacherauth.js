@@ -109,4 +109,16 @@ router.post('/getuser', fetchuser,  async (req, res) => {
   }
 })
 
+// ROUTE 3: Get loggedin User score using: Get "/api/auth/getallteachers". Login not required
+router.get('/getallteachers', async (req, res) => {
+
+  try {
+    const user = await User.find({usertype:"teacher"}).select("name").select("subject");
+    res.send(user)
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+})
+
 module.exports = router

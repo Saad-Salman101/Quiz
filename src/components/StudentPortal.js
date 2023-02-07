@@ -1,30 +1,37 @@
 import React,{useContext, useEffect} from 'react'
-import questionContext from "../context/notes/questioncontext"
+import questionContext from "../context/question/questioncontext"
+import teacherContext from '../context/teachercontext';
+import TeacherOptions from './TeacherOptions';
 import TestQuestion from './TestQuestion'
 
 
 
 const StudentPortal = () => {
     const context = useContext(questionContext);
+    const context2 =useContext(teacherContext)
+
     const { questions, getallteacherQuestions, getQuestions} = context
+    const {teachers, getallteacher}=context2
+
     
     useEffect(() => {
-      getallteacherQuestions()
+      getallteacher()
 
 
     }, [])
 
   return (
+    <>
     <div className="row my-3">
-    <h1>Questions</h1>
-    <div className="container mx-2"> 
-    {questions.length===0 && 'No questions to display'}
+      
+    {teachers.map((teacher) => {
+        console.log(teacher._id)
+        return <TeacherOptions teacher={teacher} key={teacher._id} />
+      })
+      }
+
     </div>
-    {questions.map((question) => {
-        console.log(question)
-        return <TestQuestion question={question} key={question._id} />
-    })}
-</div>
+    </>
   )
 }
 

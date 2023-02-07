@@ -21,17 +21,18 @@ const QuestionState = (props) => {
   }
 
     // Get all  teachers Questions
-    const getallteacherQuestions = async () => {
+    const getallteacherQuestions = async (id) => {
       // API Call 
-      const response = await fetch(`${host}/api/questions/fetchallteacherquestions`, {
+      const response = await fetch(`${host}/api/questions/fetchallteacherquestions/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         }
       });
       const json = await response.json()
-      // console.log(json) 
+      console.log(json) 
       console.log("printed")
+      console.log(id)
       setQuestions(json)
     }
 

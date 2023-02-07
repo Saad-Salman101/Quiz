@@ -19,7 +19,17 @@ const TeacherSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    
+    subject:{
+        type: String,
+    },
+    usertype:{
+        type:String,
+        default:"teacher"
+    },
+    subject:{
+        type:String,
+        default:"none"
+    },
   });
   const User = mongoose.model('teacheruser', TeacherSchema);
   module.exports = User;
